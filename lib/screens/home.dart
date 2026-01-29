@@ -65,18 +65,19 @@ class Home extends StatelessWidget {
                       ),
                     )
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: 17.5),
                   Row(
                     children: [
                       Expanded(
                         child: Container(
-                          height: 90,
+                          height:110,
                           decoration: BoxDecoration(
                             color: Color(0xFFA0FFFF),
                             borderRadius: BorderRadius.circular(12)
                           ),
                         ),
                       ),
+                      SizedBox(width: 17.5),
                       Expanded(
                         child: Container(
                           height: 90,
@@ -96,3 +97,4 @@ class Home extends StatelessWidget {
     );
   }
 }
+
