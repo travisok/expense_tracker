@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../widgets/expense_card.dart';
+
 class Home extends StatelessWidget {
 
   const Home ({super.key});
@@ -47,7 +49,7 @@ class Home extends StatelessWidget {
                             height: 33.5,
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              color: Color(0xFFD1D1D1),
+                              color: Color(0xFFF1F3F4),
                               borderRadius: BorderRadius.circular(12)
                             ),
                             child: Center(
@@ -69,26 +71,42 @@ class Home extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Container(
-                          height:110,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFA0FFFF),
-                            borderRadius: BorderRadius.circular(12)
-                          ),
-                        ),
+                          child: ExpenseCard(
+                            expense: 3200,
+                            category: 'Food',
+                            icon: Icons.fastfood,
+                          )
                       ),
                       SizedBox(width: 17.5),
                       Expanded(
-                        child: Container(
-                          height: 90,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFA0FFFF),
-                            borderRadius: BorderRadius.circular(12)
-                          ),
-                        ),
+                        child: ExpenseCard(
+                          expense: 300,
+                          category: 'Transportation',
+                          icon: Icons.local_taxi,
+                        )
                       ),
                     ],
-                  )
+                  ),
+                  SizedBox(height: 17.5,),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: ExpenseCard(
+                            expense: 1000,
+                            category: 'Recreation',
+                            icon: Icons.beach_access,
+                          )
+                      ),
+                      SizedBox(width: 17.5),
+                      Expanded(
+                          child: ExpenseCard(
+                            expense: 1700,
+                            category: 'Health Care',
+                            icon: Icons.medical_services
+                          )
+                      ),
+                    ],
+                  ),
                 ]
               ),
             )
