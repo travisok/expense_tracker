@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 class ExpenseCard extends StatelessWidget {
   double expense;
@@ -17,6 +17,12 @@ class ExpenseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat.currency(
+      locale: 'en_NG',
+      symbol: '₦',
+      decimalDigits: 2
+    );
+
     return Container(
       decoration: BoxDecoration(
         color: Color(0xFFF1F3F4),
@@ -47,11 +53,11 @@ class ExpenseCard extends StatelessWidget {
             ),
             SizedBox(height: 15,),
             Text(
-              '₦${expense.toStringAsFixed(2)}',
+              formatter.format(expense),
               style: GoogleFonts.inter(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF008080)
+                color: Colors.black
               ),
             ),
             //SizedBox(height: 5,),
