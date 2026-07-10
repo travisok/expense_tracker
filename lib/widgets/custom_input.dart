@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 class CustomInput extends StatelessWidget {
   final String hintText;
@@ -22,44 +23,19 @@ class CustomInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formatter = NumberFormat.currency(
-      locale: 'en_NG',
-      symbol: '₦',
-      decimalDigits: 2
-    );
 
     return TextField(
       controller: controller,
-      
-      onChanged: (value) {
-        if (!isCurrency) return;
-        
-        String cleaned = value
-            .replaceAll('₦', '')
-            .replaceAll(',', '');
-
-        if (cleaned.isEmpty) {
-          controller.clear();
-          return;
-        }
-
-        if ('.'.allMatches(cleaned).length > 1) return;
-
-        final number = double.tryParse(cleaned);
-
-        if (number == null) return;
-
-        final formatted = formatter.format(number);
-
-        if (controller.text == formatted) return;
-
-        controller.value = TextEditingValue(
-          text: formatted,
-          selection: TextSelection.collapsed(offset: formatted.length)
-        );
-      },
-
       keyboardType: keyboardType,
+      inputFormatters: isCurrency
+        ? [
+            CurrencyTextInputFormatter.currency(
+              locale: 'en_NG',
+              symbol: '₦',
+              decimalDigits: 2
+            )
+          ]
+        : inputFormatters,
       
       decoration: InputDecoration(
         hintText: hintText,
